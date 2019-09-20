@@ -23,16 +23,18 @@
 
       <!--Left Navbar-->
       <nav id="leftSidebar" class="lbackground leftSidebar text-right">
-        <div class="sidebar-header">
-          <h3>Upgrades</h3>
-        </div>
-        <div class="sidebar-items align-left">
-          <button class="butn small left black">A button</button>
+        <div id="upgradesCollapseSidebar" class="invisible">
+          <div class="sidebar-header" class="pulloutMenu">
+            <h3>Upgrades</h3>
+          </div>
+          <div class="sidebar-items align-left">
+            <button class="butn small left black">A button</button>
+          </div>
         </div>
       </nav>
       <div id="buttons">
-        <button type="button" id="upgradesCollapse" class="">Upgrades</button> <!--Button to open/close left sidebar-->
-        <button type="button" id="unitsCollapse" class="">Units</button> <!--Button to open/close left sidebar-->
+        <div><button type="button" id="upgradesCollapse" class="upgrades Collapse">Upgrades</button></div> <!--Button to open/close left sidebar-->
+        <div><button type="button" id="unitsCollapse" class="units Collapse">Units</button></div> <!--Button to open/close left sidebar-->
       </div>
 
       <!--Main Container-->

@@ -38,29 +38,30 @@ $(document).ready(function() {
         var element = this.id;
         var cost = upgradeArray[element].cost;
         if (dataCur >= cost) {
+            upgradeArray[element].numPurchased += 1;
+            
+
+            dataCur -= cost;
             switch(element) {
                 case "data":
                     currentAdd += 1;
+                    upgradeArray[element].cost = Math.round(Math.pow(upgradeArray[element].cost, upgradeArray[element].powInc));
+                    console.log(upgradeArray[element].cost);
                     break;
                 case "maximum":
+                    upgradeArray[element].cost = upgradeArray[element].cost * 2;
                     dataMax = dataMax * 2;
                     break;
 
                 case "interval":
 
                     break;
-                upgradeArray[element].numPurchased += 1;
-                upgradeArray[element].cost = Math.round(Math.pow(cost, upgradeArray[element].powInc));
-                console.log(upgradeArray[element].cost);
-                dataCur -= cost;
-                update();
+                
             }
-            // Switch for name
-                //Upgrade 1
-                //Upgrade 2
-                //Upgrade 3
-            // datacur -= cost
-            // update()
+            document.getElementById(this.id).innerHTML = upgradeArray[element].buttonText + sep + upgradeArray[element].cost;
+            update();
+        } else {
+            flashred(this.id);
         }
 
 

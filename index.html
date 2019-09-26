@@ -24,14 +24,24 @@
       <!--Left Navbar-->
       <nav id="leftSidebar" class="lbackground leftSidebar text-right">
         
-        <div id="upgradesCollapseSidebar" class="invisible">
+        <div id="upgradesCollapseSidebar" class="side invisible">
           <div class="sidebar-header">
             <h3>Upgrades</h3>
           </div>
           <div class="sidebar-items align-left">
-            <button class="butn small left black upgrade" id="data">dataGen += 1</button>
-            <button class="butn small left black upgrade" id="maximum">dataCap * 2</button>
-            <button class="butn small left black upgrade" id="interval">tickspeed * 1.1</button>
+            <button class="butn small left black upgrade" id="data">dataGen += 1 || 20</button>
+            <button class="butn small left black upgrade" id="maximum">dataCap * 2 || 10</button>
+            <button class="butn small left black upgrade" id="interval">tick * 0.9 || 100</button>
+          </div>
+        </div>
+        <div id="unitsCollapseSidebar" class="side invisible">
+          <div class="sidebar-header">
+            <h3>Units</h3>
+          </div>
+          <div class="sidebar-items align-left">
+            <button class="butn small left black upgrade">a</button>
+            <button class="butn small left black upgrade">b</button>
+            <button class="butn small left black upgrade">c</button>
           </div>
         </div>
 
@@ -47,7 +57,7 @@
 
           <!--Row 1-->
           <div class="row mx-auto my-auto px-0 justify-content-center w-100">
-            <div class="col text-left">1A</div>
+            <div class="col text-left"></div>
             <div class="col"></div>
             <div class="col"></div>
             <div class="col"></div>
@@ -55,7 +65,7 @@
 
           <!--Row 2-->
           <div class="row mx-auto my-auto px-0 justify-content-center w-100">
-            <div class="col-1 text-left">2A</div>
+            <div class="col-1 text-left"></div>
             <div class="col"></div>
             <div class="col"></div>
             <div class="col"></div>
@@ -65,7 +75,7 @@
 
           <!--Row 3-->
           <div class="row mx-auto my-auto px-0 justify-content-center w-100">
-            <div class="col text-left">3A</div>
+            <div class="col text-left"></div>
             <div class="col">
               <div class="row">
                 <div class="col norm-counter" id="dataCount">0x0</div> <!--Init Main Counter-->
@@ -80,15 +90,15 @@
 
           <!--Row 4-->
           <div class="row mx-auto my-auto px-0 justify-content-center w-100">
-            <div class="col text-left">4A</div>
-            <div class="col"><button id="mainButton" class="main-button butn large grey" onclick="buttonClick(1)">+data</button></div> <!--Main Button-->
+            <div class="col text-left"></div>
+            <div class="col"><button id="mainButton" class="main-button butn large grey" onclick="buttonClick(currentAdd)">+data</button></div> <!--Main Button-->
             <div class="col"></div>
             <div class="col-2"></div>
           </div>
 
           <!--Row 5-->
           <div class="row mx-auto my-auto px-0 justify-content-center w-100">
-              <div class="col text-left">5A</div>
+              <div class="col text-left"></div>
               <div class="col"></div>
               <div class="col"></div>
               
@@ -96,14 +106,14 @@
 
           <!--Row 6-->
           <div class="row mx-auto my-auto px-0 justify-content-center w-100">
-            <div class="col text-left">6A</div>
+            <div class="col text-left"></div>
             <div class="col"></div>
             <div class="col"></div>
           </div>
 
           <!--Row 7-->
           <div class="row mx-auto my-auto px-0 justify-content-center w-100">
-            <div class="col text-left">7A</div>
+            <div class="col text-left"></div>
             <div class="col"></div>
             <div class="col align-right justify-content-right text-right">
               <div class="row"><div class="col">

@@ -7,7 +7,7 @@ body {
 }
 
 .lbackground {
-  background-color: rgb(66, 66, 66);
+  background-color: rgb(120, 120, 120);
 }
 
 .white-text {
@@ -21,9 +21,17 @@ body {
   width: 100vh;
 }
 
-.main-button {
-  font-size: 72px;
+.butn.grey {
+  background-color: rgb(51, 51, 51);
+  color: rgb(199, 199, 199);
+  box-shadow: #999;
 }
+
+.butn.grey.main-button {
+  font-size: 72px;
+  color: red;
+}
+
 .butn {
   display: inline-block;
   padding: 3% 3%;
@@ -34,19 +42,15 @@ body {
   border: 0px solid transparent;
 }
 
-.butn.grey {
-  background-color: rgb(51, 51, 51);
-  color: rgb(199, 199, 199);
-}
-
 .butn.black {
-  background-color: rgb(151, 151, 151);
+  background-color: rgb(141, 141, 141);
   color: rgb(51, 51, 51);
+  box-shadow: #444;
 }
 
 .butn.large {
   border-radius: 15px;
-  box-shadow: 0 9px #999;
+  box-shadow: 0 9px
 }
 
 .butn.large:active {
@@ -57,7 +61,7 @@ body {
 .butn.small {
   font-size: 1.5vh;
   border-radius: 3px;
-  box-shadow: 0 3px #999;
+  box-shadow: 0 3px
 }
 
 .butn.small:active {
@@ -133,6 +137,7 @@ button:focus {
   white-space: nowrap;
   float: left;
   font-size: 2vh;
+  min-width: 18vh;
 }
 
 .align-left {
@@ -141,48 +146,19 @@ button:focus {
   padding-left: 2vh;
 }
 
-#upgradesCollapse {
-  min-height: 3vh;
-  max-height: 3vh;
-  min-width: 10vh;
-  max-width: 10vh;
+.Collapse {
+  min-height: 4vh;
+  max-height: 4vh;
+  min-width: 16vh;
+  max-width: 16vh;
   display: inline-block;
   cursor: pointer;
   text-align: center;
   text-decoration: none;
   outline: none;
-  
-  transform: translateX(1.5vh);
-  transition: all 0.6s;
-  transform-origin: bottom left;
-  border-radius: 15px 15px 15px 15px;
-  background-color: black;
-  color: white;
-  border: 0.1vh solid white;
-}
-
-#upgradesCollapse.active {
-  transform: translateX(0);
-  transition: all 0.6s;
-  transform-origin: bottom left;
-  border-radius: 0px 7px 7px 0px;
-  background-color: rgb(66, 66, 66);
-  color: #e7e7e7;
-  border: 0px solid transparent;
-}
-
-#unitsCollapse {
-  min-height: 3vh;
-  max-height: 3vh;
-  min-width: 10vh;
-  max-width: 10vh;
-  display: inline-block;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  outline: none;
-
-  transform: translateX(1.5vh);
+  font-size: 2vh;
+  /***************************/
+  transform: translateX(2.5vh);
   transition: all 0.6s;
   transform-origin: bottom left;
   border-radius: 15px 15px 15px 15px;
@@ -191,15 +167,14 @@ button:focus {
   border: 1px solid white;
 }
 
-#unitsCollapse.active {
+.Collapse.active {
   transform: translateX(0);
   transition: all 0.6s;
   transform-origin: bottom left;
-  border-radius: 0px 7px 7px 0px;
-  background-color: rgb(66, 66, 66);
+  border-radius: 0px 2vh 2vh 0px;
+  background-color: rgb(120, 120, 120);
   color: #e7e7e7;
   border: 0px solid transparent;
-
 }
 
 .pulloutMenu {
@@ -209,4 +184,20 @@ button:focus {
 .invisible {
   visibility: hidden;
   display: none;
+  max-width: 0px;
+  max-height: 0px;
+  position: relative !important;
+}
+
+.spacer {
+  min-height: 3vh;
+  max-height: 3vh;
+}
+
+.upgrade {
+  margin: 3px;
+}
+
+.smpad {
+  margin: 1px;
 }

@@ -23,16 +23,21 @@
 
       <!--Left Navbar-->
       <nav id="leftSidebar" class="lbackground leftSidebar text-right">
+        
         <div id="upgradesCollapseSidebar" class="invisible">
-          <div class="sidebar-header" class="pulloutMenu">
+          <div class="sidebar-header">
             <h3>Upgrades</h3>
           </div>
           <div class="sidebar-items align-left">
-            <button class="butn small left black">A button</button>
+            <button class="butn small left black upgrade" id="data">dataGen += 1</button>
+            <button class="butn small left black upgrade" id="maximum">dataCap * 2</button>
+            <button class="butn small left black upgrade" id="interval">tickspeed * 1.1</button>
           </div>
         </div>
+
       </nav>
       <div id="buttons">
+        <div class="spacer"></div>
         <div><button type="button" id="upgradesCollapse" class="upgrades Collapse">Upgrades</button></div> <!--Button to open/close left sidebar-->
         <div><button type="button" id="unitsCollapse" class="units Collapse">Units</button></div> <!--Button to open/close left sidebar-->
       </div>
@@ -45,13 +50,14 @@
             <div class="col text-left">1A</div>
             <div class="col"></div>
             <div class="col"></div>
+            <div class="col"></div>
           </div>
 
           <!--Row 2-->
           <div class="row mx-auto my-auto px-0 justify-content-center w-100">
-            <div class="col-1 text-left">
-
-            </div>
+            <div class="col-1 text-left">2A</div>
+            <div class="col"></div>
+            <div class="col"></div>
             <div class="col"></div>
             <div class="col"></div>
             <div class="col"></div>
@@ -59,7 +65,7 @@
 
           <!--Row 3-->
           <div class="row mx-auto my-auto px-0 justify-content-center w-100">
-            <div class="col text-left">4A</div>
+            <div class="col text-left">3A</div>
             <div class="col">
               <div class="row">
                 <div class="col norm-counter" id="dataCount">0x0</div> <!--Init Main Counter-->
@@ -69,20 +75,23 @@
               </div>
             </div>
             <div class="col"></div>
+            <div class="col-2"></div>
           </div>
 
           <!--Row 4-->
           <div class="row mx-auto my-auto px-0 justify-content-center w-100">
-            <div class="col text-left">5A</div>
-            <div class="col"><button class="main-button butn large grey" onclick="buttonClick(1)">+data</button></div> <!--Main Button-->
+            <div class="col text-left">4A</div>
+            <div class="col"><button id="mainButton" class="main-button butn large grey" onclick="buttonClick(1)">+data</button></div> <!--Main Button-->
             <div class="col"></div>
+            <div class="col-2"></div>
           </div>
 
           <!--Row 5-->
           <div class="row mx-auto my-auto px-0 justify-content-center w-100">
-              <div class="col text-left">3A</div>
+              <div class="col text-left">5A</div>
               <div class="col"></div>
               <div class="col"></div>
+              
             </div>
 
           <!--Row 6-->
@@ -96,18 +105,43 @@
           <div class="row mx-auto my-auto px-0 justify-content-center w-100">
             <div class="col text-left">7A</div>
             <div class="col"></div>
-          <div class="col"></div>
+            <div class="col align-right justify-content-right text-right">
+              <div class="row"><div class="col">
+                <button class="butn small grey smpad" onclick="saveGame()">Save</button>
+              </div></div>
+              <div class="row"><div class="col">
+                <button class="butn small grey smpad" onclick="loadGame()">Load Save</button>
+              </div></div>
+              <div class="row"><div class="col">
+                <button class="butn small grey smpad" onclick="deleteSave()">Delete Save</button>
+              </div></div>
+            </div>
 
         </div>
       </div>
     </div>
 
     <!--jQuery, Popper, Bootstrap, Custom JS, Custom jQuery-->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.js"
+      integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+      crossorigin="anonymous">
+    </script>
+    <script
+      src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+      integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
+      crossorigin="anonymous">
+    </script>
+    <script
+      src="https://code.jquery.com/color/jquery.color-2.1.2.js"
+      integrity="sha256-1Cn7TdfHiMcEbTuku97ZRSGt2b3SvZftEIn68UMgHC8="
+      crossorigin="anonymous">
+    </script>
+    <script src="js/functions.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="js/main.js"></script>
     <script src="js/buttonClick.js"></script>
     <script src="js/jQuery.js"></script>
+    <script src="js/main.js"></script>
   </body>
 </html>

@@ -81,7 +81,7 @@ body {
 
 .butn.grey.main-button {
   font-size: 72px;
-  color: red;
+  color: rgb(192, 192, 192);
 }
 
 .butn {
@@ -152,6 +152,7 @@ button:focus {
 
 .int-counter {
   font-size: 32px;
+  white-space: nowrap;
 }
 
 
@@ -248,6 +249,7 @@ button:focus {
   margin: 1px;
 }
 
-.side {
-  position: static;
+.invisible {
+  height: 0px !important;
 }
+

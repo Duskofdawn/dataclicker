@@ -1,48 +1,45 @@
 // Declare and initialize all global variables
-var dataCur = 0;
-var displayCur = 0;
-var currentAdd = 1;
+var main = {};
+main.dataCur = 0;
+main.displayCur = 0;
+main.currentAdd = 1;
 
-var dataMax = 10;
-var displayMax = 0;
-var sep = " || "
+main.dataMax = 10;
+main.displayMax = 0;
+main.sep = " || "
+main.firstClick = true;
 
-// Initializing upgrade array, cost is current cost, numPurch is how many have been purchased, and powInc is power increase
-var upgradeArray = {
+// Initializing upgrade array, cost is current cost, numPurch is how many have been purchased,
+// powInc is the power the cost should be raised to. buttonText is the text that appears on the button.
+main.upgradeArray = {
 	data:{     cost:20,  numPurchased:0, powInc:1.15, buttonText:"dataGen += 1"},
 	maximum:{  cost:10,  numPurchased:0, powInc:1.25, buttonText:"dataCap * 2" },
 	interval:{ cost:100, numPurchased:0, powInc:1.50, buttonText:"tick * 0.9"  }
 };
 
 // Basic tick time, 1 second.
-var runInterval = 1000;
+main.runInterval = 1000;
 
+// Initialization of the save file
 var save = {
-  dataCur: dataCur,
-  displayCur: displayCur,
-  currentAdd: currentAdd,
-  dataMax: dataMax,
-  displayMax: displayMax,
-  upgradeArray: upgradeArray,
-  runInterval: runInterval,
-}
-
+  main: main
+};
 
 
 
 // Function to update total display
 function update() {
   displayCurrency();
-  document.getElementById("dataCount").innerHTML = displayCur;
-  document.getElementById("decCount").innerHTML = "(" + dataCur + " / " + dataMax + ")" ;
+  document.getElementById("dataCount").innerHTML = main.displayCur; // Updates the main (binary/hex) counter
+  document.getElementById("decCount").innerHTML = "(" + main.dataCur + " / " + main.dataMax + ")" ; // Updates the secondary (decimal) counter.
 }
 
 // Function to convert decimal currency to either binary or hex depending on amount
 function displayCurrency() {
-  if (dataCur < 16) {
-    displayCur = dataCur.toString(2);
-  } else if (dataCur >= 16) {
-    displayCur = "0x" + dataCur.toString(16);
+  if (main.dataCur < Math.pow(2,8)) { // If the value is less than 256 (one binary byte), show in binary 
+    main.displayCur = main.dataCur.toString(2); 
+  } else if (main.dataCur >= Math.pow(16,2)) { // If the value is more than or equal to 256, show in hex.
+    main.displayCur = "0x" + main.dataCur.toString(16);
   }
 };
 
@@ -66,14 +63,8 @@ function deleteElement(elementId) {
 // Save function
 function saveGame() {
   save = {
-    dataCur: dataCur,
-    displayCur: displayCur,
-    currentAdd: currentAdd,
-    dataMax: dataMax,
-    displayMax: displayMax,
-    upgradeArray: upgradeArray,
-    runInterval: runInterval,
-  }
+    main: main
+  };
   localStorage.setItem("save",JSON.stringify(save));
 };
 
@@ -81,39 +72,38 @@ function saveGame() {
 function loadGame() {
   var savegame = JSON.parse(localStorage.getItem("save"));
   if (savegame) {
-    if (typeof savegame.dataCur !== "undefined") dataCur = savegame.dataCur;
-    if (typeof savegame.displayCur !== "undefined") displayCur = savegame.displayCur;
-    if (typeof savegame.currentAdd !== "undefined") currentAdd = savegame.currentAdd;
-    if (typeof savegame.dataMax !== "undefined") dataMax = savegame.dataMax;
-    if (typeof savegame.displayMax !== "undefined") displayMax = savegame.displayMax;
-    if (typeof savegame.upgradeArray !== "undefined") upgradeArray = savegame.upgradeArray;
-    if (typeof savegame.runInterval !== "undefined") runInterval = savegame.runInterval;
+    if (typeof savegame.main !== "undefined") main = savegame.main;
   }
-  for (name in upgradeArray) {
-    document.getElementById(name).innerHTML = upgradeArray[name].buttonText + sep + upgradeArray[name].cost;
+  for (name in main.upgradeArray) {
+    document.getElementById(name).innerHTML = main.upgradeArray[name].buttonText + main.sep + main.upgradeArray[name].cost;
   }
   update()
 };
 
 // Delete Save Function
 function deleteSave() {
-  var conf = confirm("Are you sure? This will delete your ENTIRE save file.")
+  var conf = confirm("Are you sure? This will delete your ENTIRE save file.") // Confirms that they want to delete
   if (conf == true) {
-    localStorage.removeItem("save");
-    dataCur = 0;
-    displayCur = 0;
-    currentAdd = 1;
-    dataMax = 10;
-    displayMax = 0;
-    upgradeArray = {
+    localStorage.removeItem("save"); // Deletes local storage save
+
+    // The reason values are manually assigned is because trying to deep copy in javascript is like trying to split the atom.
+    main.dataCur = 0;
+    main.displayCur = 0;
+    main.currentAdd = 1;
+    main.dataMax = 10;
+    main.displayMax = 0;
+    main.sep = " || "
+    main.firstClick = true;
+    main.upgradeArray = {
       data:{     cost:20,  numPurchased:0, powInc:1.15, buttonText:"dataGen += 1"},
       maximum:{  cost:10,  numPurchased:0, powInc:1.25, buttonText:"dataCap * 2" },
       interval:{ cost:100, numPurchased:0, powInc:1.50, buttonText:"tick * 0.9"  }
     };
-    runInterval = 1000;
+    main.runInterval = 1000;
+    console.log(main);
   }
-  for (name in upgradeArray) {
-    document.getElementById(name).innerHTML = upgradeArray[name].buttonText + sep + upgradeArray[name].cost;
+  for (name in main.upgradeArray) {
+    document.getElementById(name).innerHTML = main.upgradeArray[name].buttonText + main.sep + main.upgradeArray[name].cost;
   }
   update();
 };

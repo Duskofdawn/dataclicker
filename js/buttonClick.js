@@ -1,8 +1,8 @@
-function buttonClick(num) {
-  if (dataCur < dataMax) {
-    dataCur += num;
-    if (dataCur > dataMax) {
-      dataCur = dataMax;
+function buttonClick() {
+  if (main.dataCur < main.dataMax) {
+    main.dataCur += main.currentAdd;
+    if (main.dataCur > main.dataMax) {
+      main.dataCur = main.dataMax;
     }
   } else {
     flashred("decCount");

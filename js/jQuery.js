@@ -1,25 +1,29 @@
 var currentTab = ""
 var buttonTabs = ["upgradesCollapse", "unitsCollapse"];
-var firstClick = true;
 
 $(document).ready(function () {
 
     $('.Collapse').on('click', function () {
         if (currentTab == "") {                                    // If no tab is open
-            $(this).toggleClass('active');                         // Open this tab
-            $("#" + this.id + "Sidebar").toggleClass('invisible'); // Make the bar visible
-            $("#leftSidebar").toggleClass('active');               // And the sidebar
+
+            $(this).toggleClass('active');                         // Attach the tab button to the sidebar
+            $("#" + this.id + "Sidebar").toggleClass('invisible'); // Make the contents of the tab visible
+            $("#leftSidebar").toggleClass('active');               // Open the sidebar
             currentTab = this.id;                                  // Set open tab
+
         } else if (currentTab != this.id && currentTab != "") {         // If a different tab is open
-            $("#" + currentTab).toggleClass('active');                  // Close that tab
-            $("#" + currentTab + "Sidebar").toggleClass('invisible');   // Make it invisible, but don't close the sidebar.
-            $(this).toggleClass('active');                              // Open this tab
-            $("#" + this.id + "Sidebar").toggleClass('invisible');      // Make this tab visible.
+
+            $("#" + currentTab).toggleClass('active');                  // Detatch the tab from the sidebar
+            $("#" + currentTab + "Sidebar").toggleClass('invisible');   // Make the contents of the tab invisible
+            $(this).toggleClass('active');                              // Attach the new tab
+            $("#" + this.id + "Sidebar").toggleClass('invisible');      // Make new contents visible
             currentTab = this.id;                                       // Set open tab
+
         } else {                                                    // If this tab is open
-            $(this).toggleClass('active');                          // Close it
+
+            $(this).toggleClass('active');                          // Detatch from sidebar
             $("#leftSidebar").toggleClass('active');                // Close the sidebar
-            $("#" + this.id + "Sidebar").toggleClass('invisible');  // Make the text invisible
+            $("#" + this.id + "Sidebar").toggleClass('invisible');  // Make the tab contents invisible
             currentTab = "";                                        // Empty open tab
         }
         
@@ -28,49 +32,52 @@ $(document).ready(function () {
   
 
 $(document).ready(function() {
+    loadGame();
+    if (main.firstClick == true) {
+        $('#mainButton').css("color", "red");
       setTimeout( function(){
           $('#mainButton').animate({ color: "rgb(199, 199, 199)"}, '3000');
       },6000);
+      main.firstClick = false;
+      saveGame();
+    }
   });
 
 $(document).ready(function() {
-    $('.upgrade').on('click', function() {
-        var element = this.id;
-        var cost = upgradeArray[element].cost;
-        if (dataCur >= cost) {
-            upgradeArray[element].numPurchased += 1;
-            
+    $('.upgrade').on('click', function() {          // When an upgrade button is clicked
+        var element = this.id;                      // Set the ID of the clicked button to a variable
+        var cost = main.upgradeArray[element].cost;      // Grab the cost from this element in the upgradeArray
 
-            dataCur -= cost;
-            switch(element) {
+        if (main.dataCur >= cost) {                      // Check to see whether you have enough data
+            main.upgradeArray[element].numPurchased += 1;// If you do, add 1 to amount purchased
+            main.dataCur -= cost;                        // Subtract that amount from your current data
+
+            switch(element) {                       // Switch for upgrade types
+
                 case "data":
-                    currentAdd += 1;
-                    upgradeArray[element].cost = Math.round(Math.pow(upgradeArray[element].cost, upgradeArray[element].powInc));
-                    console.log(upgradeArray[element].cost);
+                    main.upgradeArray[element].cost = Math.round(Math.pow(main.upgradeArray[element].cost, main.upgradeArray[element].powInc)); // Cost goes to Cost ^ PowInc, rounded.
+                    main.currentAdd += 1; // Add 1 to data added on button click
                     break;
-                case "maximum":
-                    upgradeArray[element].cost = upgradeArray[element].cost * 2;
-                    dataMax = dataMax * 2;
+
+                case "maximum": // Data cap
+                    main.upgradeArray[element].cost = main.upgradeArray[element].cost * 2; // Cost goes up by *2
+                    main.dataMax = main.dataMax * 2; // Cap goes up by *2
                     break;
 
                 case "interval":
-
+                    main.upgradeArray[element].cost = Math.round(Math.pow(main.upgradeArray[element].cost, main.upgradeArray[element].powInc)); // Cost goes to Cost ^ PowInc, rounded.
+                    main.runInterval = main.runInterval * .9; // Decrease run interval by 90%
                     break;
                 
             }
-            document.getElementById(this.id).innerHTML = upgradeArray[element].buttonText + sep + upgradeArray[element].cost;
-            update();
-        } else {
-            flashred(this.id);
+
+            document.getElementById(this.id).innerHTML = main.upgradeArray[element].buttonText + main.sep + main.upgradeArray[element].cost; // Update the button text
+            update(); // Update the amount of data
+
+        } else { // If you don't have enough data
+            flashred(this.id); // Flash the data red
         }
-
-
-
-        // False
-            // flashred(this.id)
     })
 });
 
-$(document).ready(function() {
-    loadGame();
-});
+

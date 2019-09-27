@@ -5,7 +5,7 @@ window.setInterval(function(){
   //  buttonClick(unitCount[i]*unitEff[i]);
   //}
 
-}, runInterval);
+}, main.runInterval);
 
 window.setInterval(function() {
   saveGame();

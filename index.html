@@ -29,19 +29,70 @@
             <h3>Upgrades</h3>
           </div>
           <div class="sidebar-items align-left">
-            <button class="butn small left black upgrade" id="data">dataGen += 1 || 20</button>
-            <button class="butn small left black upgrade" id="maximum">dataCap * 2 || 10</button>
-            <button class="butn small left black upgrade" id="interval">tick * 0.9 || 100</button>
+              <h4>
+                  <div class="row headerList">
+                    <div class="col-5">Name</div>
+                    <div class="col-4">Effect</div>
+                    <div class="col-3">Cost</div>
+                  </div>
+                </h4>
+            <button class="butn small left black upgrade" id="data">
+                <div class="row">
+                    <div class="col-6 name">dataGen</div>
+                    <div class="col-3 prod">+= 1</div>
+                    <div class="col-3 cost">20</div>
+                </div>
+            </button>
+            <button class="butn small left black upgrade" id="maximum">
+                <div class="row">
+                    <div class="col-6 name">dataCap</div>
+                    <div class="col-3 prod">* 2</div>
+                    <div class="col-3 cost">10</div>
+                </div>
+            </button>
+            <button class="butn small left black upgrade" id="interval">
+                <div class="row">
+                    <div class="col-6 name">tickSpeed</div>
+                    <div class="col-3 prod">* 0.9</div>
+                    <div class="col-3 cost">100</div>
+                </div>
+            </button>
           </div>
         </div>
         <div id="unitsCollapseSidebar" class="side form-inline invisible">
           <div class="sidebar-header">
             <h3>Units</h3>
+
           </div>
           <div class="sidebar-items align-left">
-            <button class="butn small left black upgrade">a</button>
-            <button class="butn small left black upgrade">b</button>
-            <button class="butn small left black upgrade">c</button>
+              <h4>
+                  <div class="row headerList">
+                    <div class="col-5">Name</div>
+                    <div class="col-4">Prod</div>
+                    <div class="col-3">Cost</div>
+                  </div>
+                </h4>
+            <button class="butn small left black unit" id="switch">
+              <div class="row">
+                <div class="col-6 name">Switch</div>
+                <div class="col-3 prod">+1d</div>
+                <div class="col-3 cost">20</div>
+              </div>
+            </button>
+            <button class="butn small left black unit" id="transistor">
+              <div class="row">
+                <div class="col-6 name">Transistor</div>
+                <div class="col-3 prod">+3d</div>
+                <div class="col-3 cost">150</div>
+              </div>
+            </button>
+            <button class="butn small left black unit" id="byter">
+              <div class="row">
+                <div class="col-6 name">Byter</div>
+                <div class="col-3 prod">+8d</div>
+                <div class="col-3 cost">400</div>
+              </div>
+            </button>
           </div>
         </div>
 

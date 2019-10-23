@@ -1,6 +1,8 @@
 var currentTab = ""
 var buttonTabs = ["upgradesCollapse", "unitsCollapse"];
 
+
+// Function to change tabs/handle sidebar
 $(document).ready(function () {
 
     $('.Collapse').on('click', function () {
@@ -30,53 +32,75 @@ $(document).ready(function () {
     });
   });
   
-
+// Function makes text on main button red on startup and then fades to grey after a moment
 $(document).ready(function() {
-    loadGame();
-    if (main.firstClick == true) {
-        $('#mainButton').css("color", "red");
+    loadGame(); // On game load
+    if (main.firstClick == true) { // If this is the first click (set in game vars)
+        $('#mainButton').css("color", "red"); // Make the button red
       setTimeout( function(){
-          $('#mainButton').animate({ color: "rgb(199, 199, 199)"}, '3000');
+          $('#mainButton').animate({ color: "rgb(199, 199, 199)"}, '3000'); // After a moment make it gray
       },6000);
-      main.firstClick = false;
-      saveGame();
+      main.firstClick = false; // Set firstclick to False.
+      saveGame(); // Save the game.
     }
   });
 
-$(document).ready(function() {
-    $('.upgrade').on('click', function() {          // When an upgrade button is clicked
-        var element = this.id;                      // Set the ID of the clicked button to a variable
-        var cost = main.upgradeArray[element].cost;      // Grab the cost from this element in the upgradeArray
 
-        if (main.dataCur >= cost) {                      // Check to see whether you have enough data
-            main.upgradeArray[element].numPurchased += 1;// If you do, add 1 to amount purchased
-            main.dataCur -= cost;                        // Subtract that amount from your current data
+  // Function to deal with upgrade purchases
+$(document).ready(function() {
+    $('.upgrade').on('click', function() {                  // When an upgrade button is clicked
+        var element = this.id;                              // Set the ID of the clicked button to a variable
+        var cost = main.upgradeArray[element].cost;         // Grab the cost from this element in the upgradeArray
+
+        if (main.dataCur >= cost) {                         // Check to see whether you have enough data
+            main.upgradeArray[element].numPurchased += 1;   // If you do, add 1 to amount purchased
+            main.dataCur -= cost;                           // Subtract that amount from your current data
+
+            // Updates the cost of the element by function newCost = cost^powInc, rounded to the nearest integer.
+            // If powInc is 1, an alternative cost function should be included in the case.
+            main.upgradeArray[element].cost = Math.round(Math.pow(main.upgradeArray[element].cost, main.upgradeArray[element].powInc));
 
             switch(element) {                       // Switch for upgrade types
-
                 case "data":
-                    main.upgradeArray[element].cost = Math.round(Math.pow(main.upgradeArray[element].cost, main.upgradeArray[element].powInc)); // Cost goes to Cost ^ PowInc, rounded.
-                    main.currentAdd += 1; // Add 1 to data added on button click
+                    main.currentAdd += 1;           // Add 1 to data added on button click
                     break;
 
                 case "maximum": // Data cap
-                    main.upgradeArray[element].cost = main.upgradeArray[element].cost * 2; // Cost goes up by *2
+                    main.upgradeArray[element].cost = main.upgradeArray[element].cost * 2; // Cost goes up by newCost = cost*2
                     main.dataMax = main.dataMax * 2; // Cap goes up by *2
                     break;
 
                 case "interval":
-                    main.upgradeArray[element].cost = Math.round(Math.pow(main.upgradeArray[element].cost, main.upgradeArray[element].powInc)); // Cost goes to Cost ^ PowInc, rounded.
-                    main.runInterval = main.runInterval * .9; // Decrease run interval by 90%
+                    main.runInterval = main.runInterval * .9; // Decrease run interval by 10%
                     break;
-                
             }
 
-            document.getElementById(this.id).innerHTML = main.upgradeArray[element].buttonText + main.sep + main.upgradeArray[element].cost; // Update the button text
             update(); // Update the amount of data
 
         } else { // If you don't have enough data
             flashred(this.id); // Flash the data red
         }
+    })
+});
+
+// Function to handle unit purchases
+$(document).ready(function() {
+    $('.unit').on('click', function() {                 // When a unit button is clicked
+        var element = this.id;                          // Set the ID of the clicked button to a variable
+        var cost = main.unitArray[element].cost;        // Grab the cost from this element in the unitArray
+
+
+        if (main.dataCur >= cost) {                     // Check to see whether you have enough data
+            main.unitArray[element].numPurchased += 1;  // If you do, add 1 to amount purchased
+            main.dataCur -= cost;                       // Subtract that amount from your current data
+            
+            // Increases the cost by the function newCost = cost ^ powInc, rounded to integer.
+            main.unitArray[element].cost = Math.round(Math.pow(main.unitArray[element].cost, main.unitArray[element].powInc)); // Cost goes to Cost ^ PowInc, rounded.
+            update(); // Update the display
+        } else { // If you don't have enough data
+            flashred(this.id); // Flash the data display red
+        }
+
     })
 });
 

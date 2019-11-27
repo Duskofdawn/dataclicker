@@ -1,9 +1,40 @@
+/* These are variables in order to correctly set the size and make the site mobile-friendly. */
+
 :root {
-  --leftSidebarWidth: 35vh;
-  --leftSidebarZero: -35vh;
-  --sidebarButtonWidth: 31vh;
+  --leftSidebarWidth: 18vw;
+  --leftSidebarZero: -18vw;
+  --sidebarButtonWidth: 15vw;
+  --collapseButtonFontSize: 1vw;
+  --leftButtonPaddingWidth: 2vw;
+  --saveFunctionButtonSize: .85vw;
+  --collapseButtonWidth: 8vw;
+  --saveFunctionButtonWidth: 4vw;
+  --mainButtonFontSize: 5vw;
+  --normCounterFontSize: 4vw;
+  --intCounterFontSize: 3vw;
 }
 
+/* This changes the variables to  */
+@media (max-width: 979px) {
+  :root {
+    --collapseButtonFontSize: 3vw;
+    --leftButtonPaddingWidth: 0;
+    --sidebarButtonWidth: 12vw;
+    --leftSidebarWidth: 26vw;
+    --leftSidebarZero: -26vw;
+    --saveFunctionButtonSize: 3vw;
+    --collapseButtonWidth: 16vw;
+    --saveFunctionButtonWidth: 12vw;
+    --mainButtonFontSize: 15vw;
+    --normCounterFontSize: 9vw;
+    --intCounterFontSize: 7vw;
+  }
+  .sidebar-header {
+    font-size: 2vw;
+  }
+}
+
+/* Sets the font to the google font chosen for the site */
 body {
   font-family: 'Share Tech mono', monospace;
 }
@@ -71,7 +102,7 @@ body {
 }
 
 .main-row {
-  width: 100vh;
+  width: 100vw;
 }
 
 .butn.grey {
@@ -81,7 +112,7 @@ body {
 }
 
 .butn.grey.main-button {
-  font-size: 72px;
+  font-size: var(--mainButtonFontSize);
   color: rgb(192, 192, 192);
 }
 
@@ -97,7 +128,7 @@ body {
 
 .butn.black {
   background-color: rgb(141, 141, 141);
-  color: rgb(51, 51, 51);
+  color: rgb(241, 241, 241);
   box-shadow: #444;
 }
 
@@ -112,7 +143,7 @@ body {
 }
 
 .butn.small {
-  font-size: 1.5vh;
+  font-size: var(--saveFunctionButtonSize);
   border-radius: 3px;
   box-shadow: 0 3px
 }
@@ -148,11 +179,11 @@ button:focus {
 }
 
 .norm-counter {
-  font-size: 86px;
+  font-size: var(--normCounterFontSize);
 }
 
 .int-counter {
-  font-size: 32px;
+  font-size: var(--intCounterFontSize);
   white-space: nowrap;
 }
 
@@ -182,36 +213,36 @@ button:focus {
 
 .sidebar-header {
   padding-top: 10px;
-  padding-right: 2vh;
-  padding-left: 2vh;
+  padding-right: 1vw;
+  padding-left: 1vw;
   color: #e7e7e7;
 }
 
 .butn.left {
   white-space: nowrap;
   float: left;
-  font-size: 2vh;
+  font-size: var(--collapseButtonFontSize);
   min-width: var(--sidebarButtonWidth);
 }
 
 .align-left {
   float: left;
-  min-width: 25vh;
-  padding-left: 2vh;
+  min-width: 25vw;
+  padding-left: var(--leftButtonPaddingWidth);
 }
 
 .Collapse {
   min-height: 4vh;
   max-height: 4vh;
-  min-width: 16vh;
-  max-width: 16vh;
+  min-width: var(--collapseButtonWidth);
+  max-width: var(--collapseButtonWidth);
   display: inline-block;
   cursor: pointer;
   text-align: center;
   text-decoration: none;
   outline: none;
-  font-size: 2vh;
-  transform: translateX(2.5vh);
+  font-size: var(--collapseButtonFontSize);
+  transform: translateX(2.5vw);
   transition: all 0.6s;
   transform-origin: bottom left;
   border-radius: 15px 15px 15px 15px;
@@ -254,9 +285,20 @@ button:focus {
 
 .smpad {
   margin: 1px;
+  min-width: var(--saveFunctionButtonWidth);
+  max-width: var(--saveFunctionButtonWidth);
+  min-height: var(--saveFunctionButtonWidth);
+  max-height: var(--saveFunctionButtonWidth);
+  margin: auto;
+  margin-top: .25vh;
+  margin-bottom: .25vh;
 }
 
 .invisible {
   height: 0px !important;
 }
 
+.tooltip {
+  position: relative;
+  display: inline-block;
+}

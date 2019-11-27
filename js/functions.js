@@ -73,18 +73,18 @@ function flashred(name) {
 // Update the button text. Since the buttons themselves have bootstrap in them for organization purposes,
 // These functions take the button, go into the first child (row), and then in that go into either the
 // prod node or the cost node, and update from the main unitArray.
-function upgradeUnitButtons() {
+function updateUnitButtons() {
   for (name in main.unitArray) {
-    document.getElementById(name).querySelector(".prod").innerHTML = "+" + main.unitArray[element].eff + "d";
-    document.getElementById(name).querySelector(".cost").innerHTML = main.unitArray[element].cost;
+    document.getElementById(name).querySelector(".prod").innerHTML = "+" + main.unitArray[name].eff + "d/t";
+    document.getElementById(name).querySelector(".cost").innerHTML = main.unitArray[name].cost;
   }
 }
 
 // Function to update the Upgrade button set
 function updateUpgradeButtons() {
   for (name in main.upgradeArray) {
-    document.getElementById(name).querySelector(".prod").innerHTML = main.upgradeArray[element].eff;
-    document.getElementById(name).querySelector(".cost").innerHTML = main.upgradeArray[element].cost;
+    document.getElementById(name).querySelector(".prod").innerHTML = main.upgradeArray[name].eff;
+    document.getElementById(name).querySelector(".cost").innerHTML = main.upgradeArray[name].cost;
   }
 }
 
